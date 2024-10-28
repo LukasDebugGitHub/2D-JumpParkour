@@ -21,7 +21,12 @@ public class Player_RunState : Player_State
     {
         base.Update();
 
-        
+        player.SetVelocity();
+
+        if (rb.velocity == Vector2.zero)
+        {
+            stateMachine.ChangeState(player.idleState);
+        }
     }
 
 }

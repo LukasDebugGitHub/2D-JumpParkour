@@ -32,7 +32,7 @@ public class Player_State
 
     public virtual void Exit()
     {
-
+        player.anim.SetBool(animBoolName, false);
     }
     
 }

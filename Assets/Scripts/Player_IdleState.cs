@@ -12,7 +12,7 @@ public class Player_IdleState : Player_State
     {
         base.Enter();
 
-
+        player.ZeroVelocity();
     }
 
     public override void Exit()
@@ -23,5 +23,10 @@ public class Player_IdleState : Player_State
     public override void Update()
     {
         base.Update();
+
+        if (player.horizontalInput != 0)
+        {
+            stateMachine.ChangeState(player.runState);
+        }
     }
 }
