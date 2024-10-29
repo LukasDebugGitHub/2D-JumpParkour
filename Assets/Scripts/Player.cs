@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Player Info")]
-    [SerializeField] private float speed;
+    [Header("Movement Info")]
+    public float runSpeed;
+    public float jumpForce;
+    public float jumpMoveSpeed;
+    public float fallMoveSpeed;
 
-    public float horizontalInput;
+    [Header("Collision Info")]
+    [SerializeField] private float groundCheckDistance;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask whatIsGround;
 
     private float facingDir;
     private bool facingRight;
@@ -23,6 +29,8 @@ public class Player : MonoBehaviour
 
     public Player_IdleState idleState { get; private set; }
     public Player_RunState runState { get; private set; }
+    public Player_JumpState jumpState { get; private set; }
+    public Player_AirState airState { get; private set; }
     #endregion
 
     private void Awake()
@@ -31,6 +39,8 @@ public class Player : MonoBehaviour
 
         idleState = new Player_IdleState(this, stateMachine, "Idle");
         runState = new Player_RunState(this, stateMachine, "Run");
+        jumpState = new Player_JumpState(this, stateMachine, "Jump");
+        airState = new Player_AirState(this, stateMachine, "Air");
     }
 
     private void Start()
@@ -45,25 +55,26 @@ public class Player : MonoBehaviour
     private void Update()
     {
         stateMachine.currentState.Update();
-
-        horizontalInput = Input.GetAxisRaw("Horizontal");
     }
 
+    
 
-    public void SetVelocity()
+    #region Velocity
+    public void SetVelocity(float _xVelocity, float _yVelocity)
     {
-        rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
+        rb.velocity = new Vector2(_xVelocity, _yVelocity);
 
-        FlipController(horizontalInput);
+        FlipController(_xVelocity);
     }
 
     public void ZeroVelocity()
     {
         rb.velocity = Vector2.zero;
     }
+    #endregion
 
     #region Flip
-    public void Flip()
+    private void Flip()
     {
         facingDir *= -1;
         facingRight = !facingRight;
@@ -76,6 +87,16 @@ public class Player : MonoBehaviour
             Flip();
         else if (_x > 0 && facingRight)
             Flip();
+    }
+    #endregion
+
+    #region Collision
+    public bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));  
     }
     #endregion
 }

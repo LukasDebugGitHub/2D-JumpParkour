@@ -11,6 +11,8 @@ public class Player_State
 
     protected Rigidbody2D rb;
 
+    protected float xInput;
+
     public Player_State(Player _player, Player_StateMachine _stateMachine, string _animBoolName)
     {
         this.player = _player;
@@ -27,12 +29,22 @@ public class Player_State
 
     public virtual void Update()
     {
+        xInput = Input.GetAxisRaw("Horizontal");
 
+        ChangeToAirState();
     }
 
     public virtual void Exit()
     {
         player.anim.SetBool(animBoolName, false);
     }
-    
+
+
+    private void ChangeToAirState()
+    {
+        if (rb.velocity.y < 0 && !player.IsGroundDetected())
+        {
+            stateMachine.ChangeState(player.airState);
+        }
+    }
 }

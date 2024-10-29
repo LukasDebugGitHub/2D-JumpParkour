@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_RunState : Player_GroundState
+public class Player_AirState : Player_State
 {
-    public Player_RunState(Player _player, Player_StateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public Player_AirState(Player _player, Player_StateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
 
@@ -17,16 +17,16 @@ public class Player_RunState : Player_GroundState
     {
         base.Exit();
     }
+
     public override void Update()
     {
         base.Update();
 
-        player.SetVelocity(xInput * player.runSpeed, rb.velocity.y);
+        player.SetVelocity(xInput * player.fallMoveSpeed, rb.velocity.y);
 
-        if (rb.velocity == Vector2.zero)
+        if (player.IsGroundDetected())
         {
             stateMachine.ChangeState(player.idleState);
         }
     }
-
 }
