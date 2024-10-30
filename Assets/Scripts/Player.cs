@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float jumpForce;
     public float jumpMoveSpeed;
     public float fallMoveSpeed;
+    public float doubleJumpForce;
 
     [Header("Collision Info")]
     [SerializeField] private float groundCheckDistance;
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     public Player_RunState runState { get; private set; }
     public Player_JumpState jumpState { get; private set; }
     public Player_AirState airState { get; private set; }
+    public Player_DoubleJumpState doubleJumpState { get; private set; }
     #endregion
 
     private void Awake()
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
         runState = new Player_RunState(this, stateMachine, "Run");
         jumpState = new Player_JumpState(this, stateMachine, "Jump");
         airState = new Player_AirState(this, stateMachine, "Air");
+        doubleJumpState = new Player_DoubleJumpState(this, stateMachine, "DoubleJump");
     }
 
     private void Start()

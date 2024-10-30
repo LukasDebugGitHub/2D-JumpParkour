@@ -25,5 +25,10 @@ public class Player_JumpState : Player_State
         base.Update();
 
         player.SetVelocity(xInput * player.jumpMoveSpeed, rb.velocity.y);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            stateMachine.ChangeState(player.doubleJumpState);
+        }
     }
 }
