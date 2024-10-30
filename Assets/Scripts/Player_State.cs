@@ -32,6 +32,7 @@ public class Player_State
         xInput = Input.GetAxisRaw("Horizontal");
 
         ChangeToAirState();
+        ChangeToWallSlideState();
     }
 
     public virtual void Exit()
@@ -45,6 +46,13 @@ public class Player_State
         if (rb.velocity.y < 0 && !player.IsGroundDetected())
         {
             stateMachine.ChangeState(player.airState);
+        }
+    }
+    private void ChangeToWallSlideState()
+    {
+        if (player.IsWallDetected() && !player.IsGroundDetected())
+        {
+            stateMachine.ChangeState(player.wallSlideState);
         }
     }
 }

@@ -15,8 +15,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private float wallCheckDistance;
+    [SerializeField] private Transform wallCheck;
 
-    private float facingDir;
+    private float facingDir = 1;
     private bool facingRight;
 
 
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     public Player_JumpState jumpState { get; private set; }
     public Player_AirState airState { get; private set; }
     public Player_DoubleJumpState doubleJumpState { get; private set; }
+    public Player_WallSlideState wallSlideState { get; private set; }
     #endregion
 
     private void Awake()
@@ -44,6 +47,8 @@ public class Player : MonoBehaviour
         jumpState = new Player_JumpState(this, stateMachine, "Jump");
         airState = new Player_AirState(this, stateMachine, "Air");
         doubleJumpState = new Player_DoubleJumpState(this, stateMachine, "DoubleJump");
+        wallSlideState = new Player_WallSlideState(this, stateMachine, "WallSlide");
+
     }
 
     private void Start()
@@ -95,11 +100,15 @@ public class Player : MonoBehaviour
 
     #region Collision
     public bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+    public bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, wallCheckDistance, whatIsGround);
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));  
+        Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance * facingDir, wallCheck.position.y));
     }
     #endregion
 }
