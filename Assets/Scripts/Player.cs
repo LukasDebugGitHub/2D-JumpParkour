@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Movement Info")]
+    [Header("Ground Movement")]
     public float runSpeed;
+
+    [Header("Air Movement")]
     public float jumpForce;
     public float jumpMoveSpeed;
     public float fallMoveSpeed;
     public float doubleJumpForce;
+
+    [Header("Wall Slide Movement")]
     public float slideSpeed;
     public float slideMoveSpeed;
+    public float wallJumpXAxis;
+    public float wallJumpYAxis;
 
     [Header("Collision Info")]
     [SerializeField] private float groundCheckDistance;
@@ -20,7 +26,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float wallCheckDistance;
     [SerializeField] private Transform wallCheck;
 
-    private float facingDir = 1;
+    public float facingDir { get; private set; } = 1;
     private bool facingRight;
 
 
@@ -38,6 +44,7 @@ public class Player : MonoBehaviour
     public Player_AirState airState { get; private set; }
     public Player_DoubleJumpState doubleJumpState { get; private set; }
     public Player_WallSlideState wallSlideState { get; private set; }
+    public Player_WallJumpState wallJumpState { get; private set; }
     #endregion
 
     private void Awake()
@@ -50,7 +57,7 @@ public class Player : MonoBehaviour
         airState = new Player_AirState(this, stateMachine, "Air");
         doubleJumpState = new Player_DoubleJumpState(this, stateMachine, "DoubleJump");
         wallSlideState = new Player_WallSlideState(this, stateMachine, "WallSlide");
-
+        wallJumpState = new Player_WallJumpState(this, stateMachine, "WallJump");
     }
 
     private void Start()

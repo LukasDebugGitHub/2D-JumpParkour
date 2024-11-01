@@ -23,19 +23,15 @@ public class Player_WallSlideState : Player_State
         base.Update();
 
         if(yInput < 0)
-        {
-            player.SetVelocity(rb.velocity.x, yInput * player.jumpMoveSpeed);  // Change it to SetVelocity to handle the slide speed
-
-        }else if(yInput == 0)
-        {
-            player.SetVelocity(rb.velocity.x, player.slideSpeed);
-        }else
-            return;
+            player.SetVelocity(rb.velocity.x, yInput * player.slideMoveSpeed);
+        else if(yInput >= 0)
+            player.SetVelocity(rb.velocity.x, -player.slideSpeed);
         
 
+        if (Input.GetKeyDown(KeyCode.Space))
+            stateMachine.ChangeState(player.wallJumpState);
+
         if (player.IsGroundDetected())
-        {
             stateMachine.ChangeState(player.idleState);
-        }
     }
 }

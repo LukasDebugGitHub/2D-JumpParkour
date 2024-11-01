@@ -46,7 +46,7 @@ public class Player_State
 
     private void ChangeToAirState()
     {
-        if (rb.velocity.y < 0 && !player.IsGroundDetected())
+        if (rb.velocity.y < 0 && !player.IsGroundDetected() && !player.IsWallDetected())
         {
             stateMachine.ChangeState(player.airState);
         }
