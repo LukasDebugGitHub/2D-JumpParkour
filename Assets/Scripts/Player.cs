@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public float jumpMoveSpeed;
     public float fallMoveSpeed;
     public float doubleJumpForce;
+    public float slideSpeed;
+    public float slideMoveSpeed;
 
     [Header("Collision Info")]
     [SerializeField] private float groundCheckDistance;

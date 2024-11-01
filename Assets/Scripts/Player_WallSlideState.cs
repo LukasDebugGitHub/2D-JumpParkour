@@ -22,7 +22,16 @@ public class Player_WallSlideState : Player_State
     {
         base.Update();
 
-        player.ZeroVelocity();  // Change it to SetVelocity to handle the slide speed
+        if(yInput < 0)
+        {
+            player.SetVelocity(rb.velocity.x, yInput * player.jumpMoveSpeed);  // Change it to SetVelocity to handle the slide speed
+
+        }else if(yInput == 0)
+        {
+            player.SetVelocity(rb.velocity.x, player.slideSpeed);
+        }else
+            return;
+        
 
         if (player.IsGroundDetected())
         {

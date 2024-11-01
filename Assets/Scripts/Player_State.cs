@@ -12,6 +12,7 @@ public class Player_State
     protected Rigidbody2D rb;
 
     protected float xInput;
+    protected float yInput;
 
     public Player_State(Player _player, Player_StateMachine _stateMachine, string _animBoolName)
     {
@@ -30,6 +31,8 @@ public class Player_State
     public virtual void Update()
     {
         xInput = Input.GetAxisRaw("Horizontal");
+        yInput = Input.GetAxisRaw("Vertical");
+
 
         ChangeToAirState();
         ChangeToWallSlideState();

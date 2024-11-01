@@ -248,6 +248,8 @@ MonoBehaviour:
   jumpMoveSpeed: 6
   fallMoveSpeed: 5
   doubleJumpForce: 3
+  slideSpeed: 0
+  slideMoveSpeed: 3
   groundCheckDistance: 0.14
   groundCheck: {fileID: 981202387}
   whatIsGround:
