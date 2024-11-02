@@ -22,11 +22,11 @@ public class Player_WallSlideState : Player_State
     {
         base.Update();
 
-        if(yInput < 0)
-            player.SetVelocity(rb.velocity.x, yInput * player.slideMoveSpeed);
-        else if(yInput >= 0)
-            player.SetVelocity(rb.velocity.x, -player.slideSpeed);
-        
+        if (yInput < 0)
+            player.SetVelocity(0, yInput * player.slideMoveSpeed);
+        else if (yInput >= 0)
+            player.SetVelocity(0, -player.slideSpeed);
+
 
         if (Input.GetKeyDown(KeyCode.Space))
             stateMachine.ChangeState(player.wallJumpState);
