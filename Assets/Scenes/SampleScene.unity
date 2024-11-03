@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 256553302}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 256553298}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.38, y: -0.82, z: 0}
+  m_LocalPosition: {x: -2.41, y: -1.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -259,7 +259,7 @@ MonoBehaviour:
     m_Bits: 8
   wallCheckDistance: 0.07
   wallCheck: {fileID: 737587376}
-  waitSec: 3
+  waitSec: 2
 --- !u!1 &262624702
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ Transform:
   m_GameObject: {fileID: 262624702}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3800005, y: -0.82, z: -10}
+  m_LocalPosition: {x: -2.4100003, y: -1.33, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6109,7 +6109,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3800005, y: -0.82, z: -10}
+  m_LocalPosition: {x: -2.4100003, y: -1.33, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19446,8 +19446,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1555925637}
-  - component: {fileID: 1555925638}
   - component: {fileID: 1555925639}
+  - component: {fileID: 1555925638}
   m_Layer: 0
   m_Name: Sawblade Trap
   m_TagString: Trap
@@ -19484,6 +19484,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBladeOn: 0
+  throwDistanceXAxis: 10
+  throwDistanceYAxis: 5
 --- !u!58 &1555925639
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -19513,7 +19515,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

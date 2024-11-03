@@ -81,27 +81,16 @@ public class Player : MonoBehaviour
         coroutine = WaitForNextHit(waitSec);
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Trap"))
-        {
-            stateMachine.ChangeState(getHitState);
-        }
-    }
-
-
     public IEnumerator WaitForNextHit(float _newTime)
     {
         yield return new WaitForSeconds(_newTime);
 
-        stateMachine.ChangeState(idleState);
     }
 
 
 
 
-        #region Velocity
+    #region Velocity
         public void SetVelocity(float _xVelocity, float _yVelocity)
     {
         rb.velocity = new Vector2(_xVelocity, _yVelocity);
