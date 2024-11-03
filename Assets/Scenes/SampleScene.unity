@@ -259,6 +259,7 @@ MonoBehaviour:
     m_Bits: 8
   wallCheckDistance: 0.07
   wallCheck: {fileID: 737587376}
+  waitSec: 3
 --- !u!1 &262624702
 GameObject:
   m_ObjectHideFlags: 0
@@ -19449,7 +19450,7 @@ GameObject:
   - component: {fileID: 1555925639}
   m_Layer: 0
   m_Name: Sawblade Trap
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19512,7 +19513,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

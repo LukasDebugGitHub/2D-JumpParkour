@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
     public float facingDir { get; private set; } = 1;
     private bool facingRight;
 
+    public float waitSec;
+    public IEnumerator coroutine { get; private set; }
+
 
     #region Components
     public Rigidbody2D rb { get; private set; }
@@ -45,6 +48,7 @@ public class Player : MonoBehaviour
     public Player_DoubleJumpState doubleJumpState { get; private set; }
     public Player_WallSlideState wallSlideState { get; private set; }
     public Player_WallJumpState wallJumpState { get; private set; }
+    public Player_GetHitState getHitState { get; private set; }
     #endregion
 
     private void Awake()
@@ -58,13 +62,14 @@ public class Player : MonoBehaviour
         doubleJumpState = new Player_DoubleJumpState(this, stateMachine, "DoubleJump");
         wallSlideState = new Player_WallSlideState(this, stateMachine, "WallSlide");
         wallJumpState = new Player_WallJumpState(this, stateMachine, "WallJump");
+        getHitState = new Player_GetHitState(this, stateMachine, "Hit");
     }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
-        
+
         stateMachine.Initialize(idleState);
 
     }
@@ -72,12 +77,32 @@ public class Player : MonoBehaviour
     private void Update()
     {
         stateMachine.currentState.Update();
+
+        coroutine = WaitForNextHit(waitSec);
     }
 
-    
 
-    #region Velocity
-    public void SetVelocity(float _xVelocity, float _yVelocity)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Trap"))
+        {
+            stateMachine.ChangeState(getHitState);
+        }
+    }
+
+
+    public IEnumerator WaitForNextHit(float _newTime)
+    {
+        yield return new WaitForSeconds(_newTime);
+
+        stateMachine.ChangeState(idleState);
+    }
+
+
+
+
+        #region Velocity
+        public void SetVelocity(float _xVelocity, float _yVelocity)
     {
         rb.velocity = new Vector2(_xVelocity, _yVelocity);
 
