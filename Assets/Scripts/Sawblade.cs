@@ -8,6 +8,7 @@ public class Sawblade : MonoBehaviour
     [SerializeField] private bool isBladeOn;
     [SerializeField] private float throwDistanceXAxis;
     [SerializeField] private float throwDistanceYAxis;
+    [SerializeField] private int damage;
     
     private float checkDir;
 
@@ -40,9 +41,11 @@ public class Sawblade : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player") && isBladeOn)
+        if (collision.collider.CompareTag("Player") && isBladeOn && !player.isInvincible)
         {
             player.rb.AddForce(new Vector2(throwDistanceXAxis * checkDir, throwDistanceYAxis), ForceMode2D.Impulse);
+
+            player.DamageOutput(damage);
 
             player.stateMachine.ChangeState(player.getHitState);
         }

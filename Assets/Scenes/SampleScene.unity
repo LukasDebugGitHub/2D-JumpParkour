@@ -243,6 +243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c640fc295a4059447acc4ffd08e050b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 5
+  hitTime: 0.7
+  invincibleTime: 2
   runSpeed: 8
   jumpForce: 7
   jumpMoveSpeed: 6
@@ -259,7 +262,6 @@ MonoBehaviour:
     m_Bits: 8
   wallCheckDistance: 0.07
   wallCheck: {fileID: 737587376}
-  waitSec: 2
 --- !u!1 &262624702
 GameObject:
   m_ObjectHideFlags: 0
@@ -19448,7 +19450,7 @@ GameObject:
   - component: {fileID: 1555925637}
   - component: {fileID: 1555925639}
   - component: {fileID: 1555925638}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sawblade Trap
   m_TagString: Trap
   m_Icon: {fileID: 0}
@@ -19483,9 +19485,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46e24b4cc38ca942a2b6b1002fc43f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBladeOn: 0
+  isBladeOn: 1
   throwDistanceXAxis: 10
   throwDistanceYAxis: 5
+  damage: 1
 --- !u!58 &1555925639
 CircleCollider2D:
   m_ObjectHideFlags: 0

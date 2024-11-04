@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Status Info")]
+    public int health;
+
+    [Header("Cooldown")]
+    [SerializeField] private float hitTime;
+    [SerializeField] private float invincibleTime;
+
     [Header("Ground Movement")]
     public float runSpeed;
 
@@ -26,11 +33,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float wallCheckDistance;
     [SerializeField] private Transform wallCheck;
 
+    
+    public IEnumerator coroutine;
     public float facingDir { get; private set; } = 1;
     private bool facingRight;
-
-    public float waitSec;
-    public IEnumerator coroutine { get; private set; }
+    public bool isInvincible { get; private set; }
 
 
     #region Components
@@ -71,27 +78,31 @@ public class Player : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         stateMachine.Initialize(idleState);
-
     }
 
     private void Update()
     {
         stateMachine.currentState.Update();
-
-        coroutine = WaitForNextHit(waitSec);
     }
 
-    public IEnumerator WaitForNextHit(float _newTime)
+    public void DamageOutput(int _damage)
     {
-        yield return new WaitForSeconds(_newTime);
-
+        health -= _damage;
     }
 
+    public IEnumerator WaitForNextHit()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(hitTime);
+        stateMachine.ChangeState(idleState);
 
+        yield return new WaitForSeconds(invincibleTime);
+        isInvincible = false;
+    }
 
 
     #region Velocity
-        public void SetVelocity(float _xVelocity, float _yVelocity)
+    public void SetVelocity(float _xVelocity, float _yVelocity)
     {
         rb.velocity = new Vector2(_xVelocity, _yVelocity);
 

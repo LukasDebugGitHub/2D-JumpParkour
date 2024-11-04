@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class Player_State
@@ -33,7 +34,6 @@ public class Player_State
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
 
-
         ChangeFromAnyState();
     }
 
@@ -41,6 +41,7 @@ public class Player_State
     {
         player.anim.SetBool(animBoolName, false);
     }
+
 
     private void ChangeFromAnyState()
     {

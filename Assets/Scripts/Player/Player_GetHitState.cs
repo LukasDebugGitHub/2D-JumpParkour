@@ -12,6 +12,7 @@ public class Player_GetHitState : Player_State
     {
         base.Enter();
 
+        player.coroutine = player.WaitForNextHit();
         player.StartCoroutine(player.coroutine);
     }
 
