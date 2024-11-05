@@ -10,6 +10,14 @@ public class Sawblade : MonoBehaviour
     [SerializeField] private float throwDistanceXAxis;
     [SerializeField] private float throwDistanceYAxis;
     [SerializeField] private int damage;
+
+    [Header("Chain")]
+    [SerializeField] private GameObject prefabChain;
+    [SerializeField] private int chainLength;
+    [SerializeField] private float chainDistance;
+
+    int chainValue;
+    Vector2 newChainPosition = new Vector2(0, 5);
     
     private float checkDir;
 
@@ -22,6 +30,11 @@ public class Sawblade : MonoBehaviour
         player = FindAnyObjectByType<Player>();
         anim = GetComponentInChildren<Animator>();
         coll = GetComponent<Collider2D>();
+    }
+
+    private void Start()
+    {
+        newChainPosition = transform.position;
     }
 
     private void Update()
@@ -37,6 +50,19 @@ public class Sawblade : MonoBehaviour
             checkDir = -1;
         else if (player.transform.position.x >= gameObject.transform.position.x)
             checkDir = 1;
+
+        CreateChain();
+        
+    }
+
+    private void CreateChain()
+    {
+        if (chainLength > chainValue)
+        {
+            Instantiate(prefabChain, newChainPosition, transform.rotation);
+            newChainPosition.y += chainDistance;
+            chainValue++;
+        }
     }
 
 

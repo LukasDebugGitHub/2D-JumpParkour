@@ -19466,7 +19466,7 @@ Transform:
   m_GameObject: {fileID: 1555925636}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.001, z: 0}
+  m_LocalPosition: {x: 1.08, y: 0.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19486,9 +19486,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBladeOn: 1
-  throwDistanceXAxis: 0
-  throwDistanceYAxis: 0
+  throwDistanceXAxis: 5
+  throwDistanceYAxis: 3
   damage: 1
+  prefabChain: {fileID: 7155734407162672273, guid: 42f762d04c8151c4fb0b2d59f32557e7, type: 3}
+  chainLength: 20
+  chainDistance: 0.25
 --- !u!58 &1555925639
 CircleCollider2D:
   m_ObjectHideFlags: 0
