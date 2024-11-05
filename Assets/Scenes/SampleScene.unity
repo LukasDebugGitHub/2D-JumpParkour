@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 256553302}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,7 +183,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &256553302
@@ -210,15 +210,15 @@ MonoBehaviour:
   slideMoveSpeed: 3
   wallJumpXAxis: 5
   wallJumpYAxis: 7
-  groundCheckDistance: 0.05
+  groundCheckDistance: 0.07
   groundCheck: {fileID: 981202387}
+  wallCheckDistance: 0.04
+  wallCheck: {fileID: 737587376}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  wallCheckDistance: 0.04
-  wallCheck: {fileID: 737587376}
---- !u!70 &256553303
-CapsuleCollider2D:
+--- !u!61 &256553303
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -249,9 +249,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01913488, y: 0.0017920434}
-  m_Size: {x: 0.8585899, y: 0.97904867}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.830173, y: 0.94162214}
+  m_EdgeRadius: 0
 --- !u!1 &262624702
 GameObject:
   m_ObjectHideFlags: 0
@@ -19313,7 +19323,7 @@ Transform:
   m_GameObject: {fileID: 737587375}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.438, y: 0, z: 0}
+  m_LocalPosition: {x: 0.41, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19377,7 +19387,7 @@ Transform:
   m_GameObject: {fileID: 981202386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.016, y: -0.477, z: 0}
+  m_LocalPosition: {x: 0, y: -0.439, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19476,8 +19486,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBladeOn: 1
-  throwDistanceXAxis: 10
-  throwDistanceYAxis: 5
+  throwDistanceXAxis: 0
+  throwDistanceYAxis: 0
   damage: 1
 --- !u!58 &1555925639
 CircleCollider2D:

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Sawblade : MonoBehaviour
@@ -28,10 +29,9 @@ public class Sawblade : MonoBehaviour
         anim.SetBool("On", isBladeOn);
 
         if (isBladeOn)
-            coll.isTrigger = false;
-        else if (!isBladeOn)
-            coll.isTrigger = true;
-
+            coll.enabled = true;
+        if (!isBladeOn)
+            coll.enabled = false;
 
         if (player.transform.position.x < gameObject.transform.position.x)
             checkDir = -1;
@@ -39,9 +39,10 @@ public class Sawblade : MonoBehaviour
             checkDir = 1;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player") && isBladeOn && !player.isInvincible)
+        if (collision.gameObject && isBladeOn && !player.isInvincible)
         {
             player.rb.AddForce(new Vector2(throwDistanceXAxis * checkDir, throwDistanceYAxis), ForceMode2D.Impulse);
 
@@ -50,5 +51,4 @@ public class Sawblade : MonoBehaviour
             player.stateMachine.ChangeState(player.getHitState);
         }
     }
-
 }

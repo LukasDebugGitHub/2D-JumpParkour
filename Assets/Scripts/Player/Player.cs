@@ -29,9 +29,10 @@ public class Player : MonoBehaviour
     [Header("Collision Info")]
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private float wallCheckDistance;
     [SerializeField] private Transform wallCheck;
+
+    [SerializeField] private LayerMask whatIsGround;
 
     
     public IEnumerator coroutine;
@@ -133,14 +134,18 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Collision
+    // check if the player can move on the ground
     public bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+    
+    // Check if the player is able to detect a wall
     public bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, wallCheckDistance, whatIsGround);
 
     private void OnDrawGizmos()
     {
+        // Ground and Trap
         Gizmos.color = Color.red;
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
-
+        // Wall
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance * facingDir, wallCheck.position.y));
     }
