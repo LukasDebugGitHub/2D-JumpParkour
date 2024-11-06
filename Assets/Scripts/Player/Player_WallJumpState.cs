@@ -12,8 +12,9 @@ public class Player_WallJumpState : Player_State
     {
         base.Enter();
 
-        player.FlipController(-player.facingDir);
-        rb.AddForce(new Vector2(player.wallJumpXAxis * player.facingDir * rb.mass, player.wallJumpYAxis * rb.mass), ForceMode2D.Impulse);
+        stateTimer = player.airMoveTime;
+
+        player.SetVelocity(player.wallJumpForceX * rb.gravityScale * -player.facingDir, player.wallJumpForceY * rb.gravityScale);
     }
 
     public override void Exit()
@@ -25,7 +26,10 @@ public class Player_WallJumpState : Player_State
     {
         base.Update();
 
-        if (xInput != 0)
-            player.SetVelocity(xInput * player.jumpMoveSpeed, rb.velocity.y);
+        if (stateTimer < 0)
+            stateMachine.ChangeState(player.airState);
+
+        if (player.IsGroundDetected())
+            stateMachine.ChangeState(player.idleState);
     }
 }

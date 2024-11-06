@@ -15,16 +15,19 @@ public class Player : MonoBehaviour
     public float runSpeed;
 
     [Header("Air Movement")]
+    public KeyCode jumpKey;
     public float jumpForce;
     public float jumpMoveSpeed;
-    public float fallMoveSpeed;
+    public float jumpCornerTime;
+    public float airMoveSpeed;
     public float doubleJumpForce;
 
     [Header("Wall Slide Movement")]
-    public float slideSpeed;
-    public float slideMoveSpeed;
-    public float wallJumpXAxis;
-    public float wallJumpYAxis;
+    public float wallSlideSpeed;
+    public float wallSlideDownSpeed;
+    public float wallJumpForceX;
+    public float wallJumpForceY;
+    public float airMoveTime;
 
     [Header("Collision Info")]
     [SerializeField] private float groundCheckDistance;
@@ -66,7 +69,7 @@ public class Player : MonoBehaviour
         idleState = new Player_IdleState(this, stateMachine, "Idle");
         runState = new Player_RunState(this, stateMachine, "Run");
         jumpState = new Player_JumpState(this, stateMachine, "Jump");
-        airState = new Player_AirState(this, stateMachine, "Air");
+        airState = new Player_AirState(this, stateMachine, "Jump");
         doubleJumpState = new Player_DoubleJumpState(this, stateMachine, "DoubleJump");
         wallSlideState = new Player_WallSlideState(this, stateMachine, "WallSlide");
         wallJumpState = new Player_WallJumpState(this, stateMachine, "WallJump");

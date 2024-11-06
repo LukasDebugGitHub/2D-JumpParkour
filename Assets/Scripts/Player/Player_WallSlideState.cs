@@ -22,16 +22,25 @@ public class Player_WallSlideState : Player_State
     {
         base.Update();
 
-        if (yInput < 0)
-            player.SetVelocity(0, yInput * player.slideMoveSpeed);
-        else if (yInput >= 0)
-            player.SetVelocity(0, -player.slideSpeed);
-
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        // doing wall jump
+        if (Input.GetKeyDown(player.jumpKey))
+        {
             stateMachine.ChangeState(player.wallJumpState);
+            return;
+        }
 
-        if (player.IsGroundDetected())
+        // player goes of the wall
+        if (xInput != 0 && xInput != player.facingDir)
+            stateMachine.ChangeState(player.idleState);
+
+        // over the negative y input, move faster down
+        if (yInput < 0)
+            rb.velocity = new Vector2(0, -player.wallSlideDownSpeed);
+        else
+            rb.velocity = new Vector2(0, -player.wallSlideSpeed);
+
+        // goes to idle, when the player hits the ground
+        if (player.IsGroundDetected() || !player.IsWallDetected())
             stateMachine.ChangeState(player.idleState);
     }
 }

@@ -12,7 +12,9 @@ public class Player_JumpState : Player_State
     {
         base.Enter();
 
-        rb.AddForce(Vector2.up * player.jumpForce * rb.mass, ForceMode2D.Impulse);
+        rb.velocity = new Vector2(rb.velocity.x, player.jumpForce * rb.mass);
+        if (player.IsWallDetected() && player.IsGroundDetected())
+            stateTimer = player.jumpCornerTime;
     }
 
     public override void Exit()
@@ -26,7 +28,13 @@ public class Player_JumpState : Player_State
 
         player.SetVelocity(xInput * player.jumpMoveSpeed, rb.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(player.jumpKey))
             stateMachine.ChangeState(player.doubleJumpState);
+
+        if (rb.velocity.y < 0)
+            stateMachine.ChangeState(player.airState);
+
+        if (player.IsWallDetected() && !player.IsGroundDetected() && stateTimer < 0)
+            stateMachine.ChangeState(player.wallSlideState);
     }
 }

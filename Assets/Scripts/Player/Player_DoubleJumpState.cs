@@ -24,6 +24,8 @@ public class Player_DoubleJumpState : Player_State
     {
         base.Update();
 
+        player.SetVelocity(xInput * player.jumpMoveSpeed, rb.velocity.y);
+
         if (player.IsGroundDetected())
         {
             stateMachine.ChangeState(player.idleState);

@@ -15,6 +15,8 @@ public class Player_State
     protected float xInput;
     protected float yInput;
 
+    protected float stateTimer;
+
     public Player_State(Player _player, Player_StateMachine _stateMachine, string _animBoolName)
     {
         this.player = _player;
@@ -33,30 +35,13 @@ public class Player_State
     {
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
+        player.anim.SetFloat("yVelocity", rb.velocity.y);
 
-        ChangeFromAnyState();
+        stateTimer -= Time.deltaTime;
     }
 
     public virtual void Exit()
     {
         player.anim.SetBool(animBoolName, false);
-    }
-
-
-    private void ChangeFromAnyState()
-    {
-        ChangeToAirState();
-        ChangeToWallSlideState();
-    }
-
-    private void ChangeToAirState()
-    {
-        if (rb.velocity.y < 0 && !player.IsGroundDetected() && !player.IsWallDetected())
-            stateMachine.ChangeState(player.airState);
-    }
-    private void ChangeToWallSlideState()
-    {
-        if (player.IsWallDetected() && !player.IsGroundDetected())
-            stateMachine.ChangeState(player.wallSlideState);
     }
 }

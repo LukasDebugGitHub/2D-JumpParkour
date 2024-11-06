@@ -11,11 +11,15 @@ public class Player_RunState : Player_GroundState
     public override void Enter()
     {
         base.Enter();
+
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        //player.ZeroVelocity();
+
     }
     public override void Update()
     {
@@ -23,10 +27,15 @@ public class Player_RunState : Player_GroundState
 
         player.SetVelocity(xInput * player.runSpeed, rb.velocity.y);
 
-        if (rb.velocity == Vector2.zero)
-        {
+        //if (player.timeValue < 0)
+        //{
+        //    player.timeValue = player.runBumpingTime;
+        //    rb.AddForce(new Vector2(0, player.runBumping), ForceMode2D.Impulse);
+        //}
+
+
+        if (xInput == 0 || player.IsWallDetected())
             stateMachine.ChangeState(player.idleState);
-        }
     }
 
 }

@@ -131,9 +131,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 256553299}
-  - component: {fileID: 256553303}
   - component: {fileID: 256553300}
   - component: {fileID: 256553302}
+  - component: {fileID: 256553303}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -150,8 +150,8 @@ Transform:
   m_GameObject: {fileID: 256553298}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.41, y: -1.33, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.41, y: -0.99, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 443075959}
@@ -174,7 +174,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: b5dd48f777011d1438c5764f5d7a770a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -202,23 +202,26 @@ MonoBehaviour:
   hitTime: 0.7
   invincibleTime: 2
   runSpeed: 8
-  jumpForce: 7
-  jumpMoveSpeed: 6
-  fallMoveSpeed: 5
-  doubleJumpForce: 4
-  slideSpeed: 1
-  slideMoveSpeed: 3
-  wallJumpXAxis: 5
-  wallJumpYAxis: 7
-  groundCheckDistance: 0.07
+  jumpKey: 119
+  jumpForce: 18
+  jumpMoveSpeed: 8
+  jumpCornerTime: 2
+  airMoveSpeed: 8
+  doubleJumpForce: 12
+  wallSlideSpeed: 1
+  wallSlideDownSpeed: 2
+  wallJumpForceX: 2
+  wallJumpForceY: 3
+  airMoveTime: 0.1
+  groundCheckDistance: 0.28
   groundCheck: {fileID: 981202387}
-  wallCheckDistance: 0.04
+  wallCheckDistance: 0.15
   wallCheck: {fileID: 737587376}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
---- !u!61 &256553303
-BoxCollider2D:
+--- !u!58 &256553303
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -250,18 +253,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.830173, y: 0.94162214}
-  m_EdgeRadius: 0
+  m_Radius: 0.48
 --- !u!1 &262624702
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +281,7 @@ Transform:
   m_GameObject: {fileID: 262624702}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.4100003, y: -1.33, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -313,11 +306,11 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 256553299}
-  m_Follow: {fileID: 256553299}
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 5
+    OrthographicSize: 10.77
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -6037,7 +6030,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   m_Layer: 0
-  m_Name: Player Camera
+  m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6086,7 +6079,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10.77
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6111,7 +6104,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.4100003, y: -1.33, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19323,7 +19316,7 @@ Transform:
   m_GameObject: {fileID: 737587375}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41, y: 0, z: 0}
+  m_LocalPosition: {x: 0.461, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19387,7 +19380,7 @@ Transform:
   m_GameObject: {fileID: 981202386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.439, z: 0}
+  m_LocalPosition: {x: 0, y: -0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19456,7 +19449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1555925637
 Transform:
   m_ObjectHideFlags: 0
@@ -19489,9 +19482,6 @@ MonoBehaviour:
   throwDistanceXAxis: 5
   throwDistanceYAxis: 3
   damage: 1
-  prefabChain: {fileID: 7155734407162672273, guid: 42f762d04c8151c4fb0b2d59f32557e7, type: 3}
-  chainLength: 20
-  chainDistance: 0.25
 --- !u!58 &1555925639
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -19537,7 +19527,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1880420604}
   - component: {fileID: 1880420606}
-  - component: {fileID: 1880420605}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -19560,49 +19549,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 262624703}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1880420605
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880420603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
-  m_LookaheadIgnoreY: 0
-  m_XDamping: 0
-  m_YDamping: 0
-  m_ZDamping: 0
-  m_TargetMovementOnly: 1
-  m_ScreenX: 0.5
-  m_ScreenY: 0.5
-  m_CameraDistance: 10
-  m_DeadZoneWidth: 0.2
-  m_DeadZoneHeight: 0.22
-  m_DeadZoneDepth: 0
-  m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.64
-  m_SoftZoneHeight: 0.57
-  m_BiasX: 0
-  m_BiasY: 0
-  m_CenterOnActivate: 1
-  m_GroupFramingMode: 2
-  m_AdjustmentMode: 0
-  m_GroupFramingSize: 0.8
-  m_MaxDollyIn: 5000
-  m_MaxDollyOut: 5000
-  m_MinimumDistance: 1
-  m_MaximumDistance: 5000
-  m_MinimumFOV: 3
-  m_MaximumFOV: 60
-  m_MinimumOrthoSize: 1
-  m_MaximumOrthoSize: 5000
 --- !u!114 &1880420606
 MonoBehaviour:
   m_ObjectHideFlags: 3
