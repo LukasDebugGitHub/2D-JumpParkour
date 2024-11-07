@@ -22,6 +22,9 @@ public class Player_AirState : Player_State
     {
         base.Update();
 
+        if (Input.GetKeyDown(player.jumpKey) && player.doubleJumpCounter > 0)
+            stateMachine.ChangeState(player.doubleJumpState);
+
         if (player.IsWallDetected())
             stateMachine.ChangeState(player.wallSlideState);
 

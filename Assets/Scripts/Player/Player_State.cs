@@ -17,6 +17,9 @@ public class Player_State
 
     protected float stateTimer;
 
+    protected int doubleJumpCounter;
+    protected int doubleJumpCount;
+
     public Player_State(Player _player, Player_StateMachine _stateMachine, string _animBoolName)
     {
         this.player = _player;
@@ -37,7 +40,10 @@ public class Player_State
         yInput = Input.GetAxisRaw("Vertical");
         player.anim.SetFloat("yVelocity", rb.velocity.y);
 
+
+
         stateTimer -= Time.deltaTime;
+
     }
 
     public virtual void Exit()

@@ -11,6 +11,8 @@ public class Player_WallSlideState : Player_State
     public override void Enter()
     {
         base.Enter();
+
+        player.DoubleJumpReset();
     }
 
     public override void Exit()

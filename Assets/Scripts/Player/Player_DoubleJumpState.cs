@@ -12,7 +12,9 @@ public class Player_DoubleJumpState : Player_State
     {
         base.Enter();
 
-        rb.AddForce(Vector2.up * player.doubleJumpForce * rb.mass, ForceMode2D.Impulse);
+        rb.velocity = new Vector2(rb.velocity.x, player.doubleJumpForce * rb.gravityScale);
+
+        player.doubleJumpCounter--;
     }
 
     public override void Exit()
@@ -25,10 +27,16 @@ public class Player_DoubleJumpState : Player_State
         base.Update();
 
         player.SetVelocity(xInput * player.jumpMoveSpeed, rb.velocity.y);
+        
+
+        if (rb.velocity.y < 0)
+            stateMachine.ChangeState(player.airState);
+        
+        if(player.IsWallDetected())
+            stateMachine.ChangeState(player.wallSlideState);
+
 
         if (player.IsGroundDetected())
-        {
             stateMachine.ChangeState(player.idleState);
-        }
     }
 }

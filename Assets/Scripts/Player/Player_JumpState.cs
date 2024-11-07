@@ -12,7 +12,8 @@ public class Player_JumpState : Player_State
     {
         base.Enter();
 
-        rb.velocity = new Vector2(rb.velocity.x, player.jumpForce * rb.mass);
+        rb.velocity = new Vector2(rb.velocity.x, player.jumpForce * rb.gravityScale);
+        
         if (player.IsWallDetected() && player.IsGroundDetected())
             stateTimer = player.jumpCornerTime;
     }

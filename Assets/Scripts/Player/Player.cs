@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 
     [Header("Ground Movement")]
     public float runSpeed;
+    public float runBumping;
+    public float runBumpingTime;
 
     [Header("Air Movement")]
     public KeyCode jumpKey;
@@ -21,6 +23,8 @@ public class Player : MonoBehaviour
     public float jumpCornerTime;
     public float airMoveSpeed;
     public float doubleJumpForce;
+    [SerializeField] private int doubleJumpNumber;
+    [HideInInspector] public int doubleJumpCounter;
 
     [Header("Wall Slide Movement")]
     public float wallSlideSpeed;
@@ -92,6 +96,11 @@ public class Player : MonoBehaviour
     public void DamageOutput(int _damage)
     {
         health -= _damage;
+    }
+
+    public void DoubleJumpReset()
+    {
+        doubleJumpCounter = doubleJumpNumber;
     }
 
     public IEnumerator WaitForNextHit()

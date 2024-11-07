@@ -137,7 +137,7 @@ GameObject:
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -201,21 +201,25 @@ MonoBehaviour:
   health: 5
   hitTime: 0.7
   invincibleTime: 2
-  runSpeed: 8
-  jumpKey: 119
-  jumpForce: 18
+  runSpeed: 2.1
+  runBumping: 1
+  runBumpingTime: 0.25
+  jumpKey: 32
+  jumpForce: 4
   jumpMoveSpeed: 8
   jumpCornerTime: 2
   airMoveSpeed: 8
-  doubleJumpForce: 12
+  doubleJumpForce: 3.5
+  doubleJumpNumber: 1
+  doubleJumpCounter: 0
   wallSlideSpeed: 1
-  wallSlideDownSpeed: 2
+  wallSlideDownSpeed: 3
   wallJumpForceX: 2
   wallJumpForceY: 3
   airMoveTime: 0.1
-  groundCheckDistance: 0.28
+  groundCheckDistance: 0.25
   groundCheck: {fileID: 981202387}
-  wallCheckDistance: 0.15
+  wallCheckDistance: 0.1
   wallCheck: {fileID: 737587376}
   whatIsGround:
     serializedVersion: 2

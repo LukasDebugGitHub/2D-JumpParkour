@@ -11,27 +11,24 @@ public class Player_RunState : Player_GroundState
     public override void Enter()
     {
         base.Enter();
-
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        //player.ZeroVelocity();
-
     }
     public override void Update()
     {
         base.Update();
 
-        player.SetVelocity(xInput * player.runSpeed, rb.velocity.y);
+        player.SetVelocity(xInput * player.runSpeed * rb.gravityScale, rb.velocity.y);
 
-        //if (player.timeValue < 0)
-        //{
-        //    player.timeValue = player.runBumpingTime;
-        //    rb.AddForce(new Vector2(0, player.runBumping), ForceMode2D.Impulse);
-        //}
+        if (stateTimer < 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, player.runBumping * rb.gravityScale);
+            stateTimer = player.runBumpingTime;
+        }
 
 
         if (xInput == 0 || player.IsWallDetected())
