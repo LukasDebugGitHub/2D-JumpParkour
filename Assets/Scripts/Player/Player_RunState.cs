@@ -30,7 +30,6 @@ public class Player_RunState : Player_GroundState
             stateTimer = player.runBumpingTime;
         }
 
-
         if (xInput == 0 || player.IsWallDetected())
             stateMachine.ChangeState(player.idleState);
     }
