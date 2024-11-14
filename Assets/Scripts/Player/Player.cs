@@ -33,6 +33,11 @@ public class Player : MonoBehaviour
     public float wallJumpForceY;
     public float airMoveTime;
 
+    [Header("Get Hit Info")]
+    public float spawnTime;
+    public Vector2 spawnPosition;
+    public float hitRotationSpeed;
+
     [Header("Collision Info")]
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private Transform groundCheck;
@@ -41,8 +46,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private LayerMask whatIsGround;
 
-    
-    public IEnumerator coroutine;
+
     public float facingDir { get; private set; } = 1;
     private bool facingRight;
     public bool isInvincible { get; private set; }
@@ -51,6 +55,7 @@ public class Player : MonoBehaviour
     #region Components
     public Rigidbody2D rb { get; private set; }
     public Animator anim {  get; private set; }
+    public Collider2D coll {  get; private set; }
     #endregion
 
     #region States
@@ -84,6 +89,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        coll = GetComponent<Collider2D>();
 
         stateMachine.Initialize(idleState);
     }
@@ -101,16 +107,6 @@ public class Player : MonoBehaviour
     public void DoubleJumpReset()
     {
         doubleJumpCounter = doubleJumpNumber;
-    }
-
-    public IEnumerator WaitForNextHit()
-    {
-        isInvincible = true;
-        yield return new WaitForSeconds(hitTime);
-        stateMachine.ChangeState(idleState);
-
-        yield return new WaitForSeconds(invincibleTime);
-        isInvincible = false;
     }
 
 

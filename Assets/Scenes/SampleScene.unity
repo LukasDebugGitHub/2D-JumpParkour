@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 256553298}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.41, y: -0.99, z: 0}
+  m_LocalPosition: {x: 3.26, y: -1.16, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -217,6 +217,9 @@ MonoBehaviour:
   wallJumpForceX: 2
   wallJumpForceY: 3
   airMoveTime: 0.1
+  spawnTime: 2
+  spawnPosition: {x: 3.26, y: -1.16}
+  hitRotationSpeed: 100
   groundCheckDistance: 0.45
   groundCheck: {fileID: 981202387}
   wallCheckDistance: 0.1
@@ -19638,15 +19641,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1555925637}
   - component: {fileID: 1555925639}
-  - component: {fileID: 1555925638}
   - component: {fileID: 1555925640}
-  m_Layer: 3
+  - component: {fileID: 1555925638}
+  m_Layer: 0
   m_Name: Sawblade Trap
-  m_TagString: Trap
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1555925637
 Transform:
   m_ObjectHideFlags: 0
@@ -19805,7 +19808,7 @@ GameObject:
   - component: {fileID: 1990685190}
   - component: {fileID: 1990685189}
   - component: {fileID: 1990685194}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20141,8 +20144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTrapOn: 1
-  playerForceX: 0
-  playerForceY: 0
+  playerForceX: 1
+  playerForceY: 15
   damage: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

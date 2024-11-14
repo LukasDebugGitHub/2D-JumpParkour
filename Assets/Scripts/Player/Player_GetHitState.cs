@@ -12,17 +12,29 @@ public class Player_GetHitState : Player_State
     {
         base.Enter();
 
-        player.coroutine = player.WaitForNextHit();
-        player.StartCoroutine(player.coroutine);
+        player.coll.enabled = false;
+
+        stateTimer = player.spawnTime;
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        player.coll.enabled = true;
     }
 
     public override void Update()
     {
         base.Update();
+            
+        player.transform.Rotate(Vector3.forward * player.facingDir * Time.deltaTime * player.hitRotationSpeed);
+
+        if (stateTimer < 0)
+        {
+            player.transform.rotation = Quaternion.identity;
+            player.transform.position = player.spawnPosition;
+            stateMachine.ChangeState(player.idleState);
+        }
     }
 }
