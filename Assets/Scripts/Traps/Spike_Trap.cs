@@ -14,8 +14,4 @@ public class Spike_Trap : Trap
     {
         base.Update();
     }
-    protected override void OnCollisionStay2D(Collision2D collision)
-    {
-        base.OnCollisionStay2D(collision);
-    }
 }
