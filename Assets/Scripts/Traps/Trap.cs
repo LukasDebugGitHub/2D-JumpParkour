@@ -46,11 +46,11 @@ public class Trap : MonoBehaviour
 
     protected virtual void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject && isTrapOn && !player.isInvincible)
+        if (collision.gameObject.CompareTag("Player") && isTrapOn)
         {
             player.rb.velocity = new Vector2(playerForceX * checkDir, playerForceY);
 
-            player.DamageOutput(damage);
+            player.DamageInput(damage);
 
             player.stateMachine.ChangeState(player.getHitState);
         }

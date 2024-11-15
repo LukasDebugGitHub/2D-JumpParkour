@@ -7,10 +7,6 @@ public class Player : MonoBehaviour
     [Header("Status Info")]
     public int health;
 
-    [Header("Cooldown")]
-    [SerializeField] private float hitTime;
-    [SerializeField] private float invincibleTime;
-
     [Header("Ground Movement")]
     public float runSpeed;
     public float runBumping;
@@ -49,7 +45,6 @@ public class Player : MonoBehaviour
 
     public float facingDir { get; private set; } = 1;
     private bool facingRight;
-    public bool isInvincible { get; private set; }
 
 
     #region Components
@@ -99,7 +94,7 @@ public class Player : MonoBehaviour
         stateMachine.currentState.Update();
     }
 
-    public void DamageOutput(int _damage)
+    public void DamageInput(int _damage)
     {
         health -= _damage;
     }
@@ -109,6 +104,19 @@ public class Player : MonoBehaviour
         doubleJumpCounter = doubleJumpNumber;
     }
 
+    public void SpawnPlayer()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        if (facingDir != 1)
+        {
+            facingDir = 1;
+            facingRight = false;
+        }
+
+        transform.position = spawnPosition;
+        stateMachine.ChangeState(idleState);
+    }
 
     #region Velocity
     public void SetVelocity(float _xVelocity, float _yVelocity)
