@@ -44,7 +44,7 @@ public class Trap : MonoBehaviour
             checkDir = 1;
     }
 
-    protected virtual void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && isTrapOn)
         {
